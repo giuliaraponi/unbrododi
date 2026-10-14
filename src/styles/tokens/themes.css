@@ -1,0 +1,77 @@
+/* Theme mapping: color-related semantic tokens for light and dark. */
+:root {
+  color-scheme: light dark;
+
+  --background: var(--color-papyrus-200);
+  --surface: var(--color-papyrus-100);
+  --surface-muted: var(--color-papyrus-300);
+  --surface-image: var(--color-papyrus-100);
+  --text-primary: var(--color-ink-900);
+  --text-secondary: var(--color-ink-700);
+  --text-muted: var(--color-ink-500);
+  --text-on-action: var(--color-papyrus-100);
+  --action-primary: var(--color-burgundy-600);
+  --action-primary-hover: var(--color-burgundy-700);
+  --border-subtle: var(--color-papyrus-400);
+  --border-strong: var(--color-burgundy-600);
+  --focus-ring: var(--color-burgundy-700);
+  --success: var(--color-green-700);
+  --danger: var(--color-red-700);
+
+  --shadow-card: var(--shadow-offset-sm) var(--color-shadow-light), var(--shadow-offset-md) var(--color-shadow-light);
+  --shadow-card-hover: var(--shadow-offset-sm) var(--color-shadow-light), var(--shadow-offset-md) var(--color-shadow-light-strong);
+  --shadow-paper: drop-shadow(var(--shadow-drop-lg) var(--color-shadow-light-strong));
+  --backdrop: var(--color-backdrop-light);
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --background: var(--color-night-900);
+  --surface: var(--color-night-800);
+  --surface-muted: var(--color-night-700);
+  --text-primary: var(--color-cream-100);
+  --text-secondary: var(--color-cream-300);
+  --text-muted: var(--color-cream-500);
+  --text-on-action: var(--color-night-900);
+  --action-primary: var(--color-burgundy-300);
+  --action-primary-hover: var(--color-burgundy-200);
+  --border-subtle: var(--color-night-600);
+  --border-strong: var(--color-burgundy-300);
+  --focus-ring: var(--color-burgundy-200);
+  --success: var(--color-green-300);
+  --danger: var(--color-red-300);
+
+  --shadow-card: var(--shadow-offset-sm) var(--color-shadow-dark), var(--shadow-offset-md) var(--color-shadow-dark);
+  --shadow-card-hover: var(--shadow-offset-sm) var(--color-shadow-dark), var(--shadow-offset-md) var(--color-shadow-dark-strong);
+  --shadow-paper: drop-shadow(var(--shadow-drop-lg) var(--color-shadow-dark-strong));
+  --backdrop: var(--color-backdrop-dark);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --background: var(--color-night-900);
+    --surface: var(--color-night-800);
+    --surface-muted: var(--color-night-700);
+    --text-primary: var(--color-cream-100);
+    --text-secondary: var(--color-cream-300);
+    --text-muted: var(--color-cream-500);
+    --text-on-action: var(--color-night-900);
+    --action-primary: var(--color-burgundy-300);
+    --action-primary-hover: var(--color-burgundy-200);
+    --border-subtle: var(--color-night-600);
+    --border-strong: var(--color-burgundy-300);
+    --focus-ring: var(--color-burgundy-200);
+    --success: var(--color-green-300);
+    --danger: var(--color-red-300);
+
+    --shadow-card: var(--shadow-offset-sm) var(--color-shadow-dark), var(--shadow-offset-md) var(--color-shadow-dark);
+    --shadow-card-hover: var(--shadow-offset-sm) var(--color-shadow-dark), var(--shadow-offset-md) var(--color-shadow-dark-strong);
+    --shadow-paper: drop-shadow(var(--shadow-drop-lg) var(--color-shadow-dark-strong));
+    --backdrop: var(--color-backdrop-dark);
+  }
+}

@@ -1,0 +1,46 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import HomeLink from '../components/HomeLink.astro';
+
+interface Props {
+  title: string;
+  heading: string;
+  description: string;
+}
+
+const { title, heading, description } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <header class="header">
+    <HomeLink />
+  </header>
+  <main class="main">
+    <h1 class="page-title">{heading}</h1>
+    <slot />
+  </main>
+</BaseLayout>
+
+<style>
+  .header {
+    width: 100%;
+    max-width: calc(var(--container-max) + 2 * var(--space-inline-gutter));
+    margin-inline: auto;
+    padding: var(--space-stack) var(--space-inline-gutter);
+    padding-inline-end: calc(var(--space-inline-gutter) + var(--touch-target));
+  }
+
+  .main {
+    width: 100%;
+    max-width: calc(var(--container-max) + 2 * var(--space-inline-gutter));
+    margin-inline: auto;
+    padding: var(--space-section) var(--space-inline-gutter);
+    padding-block-start: var(--space-stack-lg);
+  }
+
+  .page-title {
+    margin-block-end: var(--space-section);
+    font-size: var(--text-size-page-title);
+    text-align: center;
+  }
+</style>

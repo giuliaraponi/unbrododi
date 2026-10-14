@@ -1,0 +1,93 @@
+---
+import { getCollection, render } from 'astro:content';
+import PageLayout from '../layouts/PageLayout.astro';
+import PoemCard from '../components/PoemCard.astro';
+import PoemDialog from '../components/PoemDialog.astro';
+import { site } from '../site.config';
+
+const poems = (await getCollection('poesie')).sort((a, b) => a.data.title.localeCompare(b.data.title, site.lang));
+const rendered = await Promise.all(poems.map(async (poem) => ({ poem, ...(await render(poem)) })));
+const { title, description } = site.pages.poems;
+---
+
+<PageLayout title={`${title} · ${site.name}`} heading={title} description={description}>
+  <ul class="grid">
+    {
+      rendered.map(({ poem, Content }) => {
+        const dialogId = `dialog-${poem.data.slug}`;
+        return (
+          <li>
+            <PoemCard title={poem.data.title} intro={poem.data.intro} tags={poem.data.tags} dialogId={dialogId} />
+            <PoemDialog id={dialogId} title={poem.data.title} images={poem.data.images}>
+              <Content />
+            </PoemDialog>
+          </li>
+        );
+      })
+    }
+  </ul>
+  <noscript>
+    <style is:inline>
+      /* Without JavaScript, show each poem below its card. */
+      dialog.poem-dialog:not([open]) {
+        position: static;
+        display: block;
+        width: auto;
+        max-height: none;
+        margin-block-start: var(--space-stack);
+      }
+      .poem-dialog .close-bar {
+        display: none;
+      }
+      .poem-card .open {
+        cursor: default;
+      }
+      .grid {
+        grid-auto-rows: auto !important;
+      }
+    </style>
+  </noscript>
+</PageLayout>
+
+<script>
+  import { initPoemDialogs } from '../scripts/poem-dialog';
+  initPoemDialogs();
+</script>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: 1fr;
+    gap: var(--space-grid-gap);
+    padding: var(--space-none);
+    list-style: none;
+  }
+
+  .grid > li {
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (min-width: 40rem) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 60rem) {
+    .grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (min-width: 72rem) {
+    .grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  :global(html:has(dialog[open])) {
+    overflow: hidden;
+  }
+</style>

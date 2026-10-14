@@ -1,0 +1,122 @@
+/* Primitive tokens: raw values only. Never reference these from components. */
+:root {
+  /* Font families */
+  --font-family-serif: 'Lora', Georgia, 'Times New Roman', serif;
+  --font-family-sans: 'Work Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Font weights */
+  --font-weight-400: 400;
+  --font-weight-500: 500;
+
+  /* Font sizes */
+  --font-size-100: 0.8125rem;
+  --font-size-200: 0.875rem;
+  --font-size-300: 1rem;
+  --font-size-400: 1.125rem;
+  --font-size-500: 1.375rem;
+  --font-size-600: 1.75rem;
+  --font-size-700: clamp(2rem, 1.5rem + 2.5vw, 3rem);
+  --font-size-800: clamp(2.5rem, 1.75rem + 4vw, 4rem);
+
+  /* Line heights */
+  --line-height-tight: 1.2;
+  --line-height-snug: 1.4;
+  --line-height-normal: 1.6;
+  --line-height-verse: 1.75;
+
+  /* Letter spacing */
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.04em;
+
+  /* Colors */
+  --color-papyrus-100: #fcf8ee;
+  --color-papyrus-200: #f6efdf;
+  --color-papyrus-300: #efe5cf;
+  --color-papyrus-400: #dccdb0;
+  --color-ink-900: #2e241d;
+  --color-ink-700: #57483c;
+  --color-ink-500: #6e5e50;
+  --color-burgundy-600: #9e1b34;
+  --color-burgundy-700: #7e1529;
+  --color-burgundy-300: #f2899b;
+  --color-burgundy-200: #f7aab7;
+  --color-night-900: #1f1a16;
+  --color-night-800: #2a231e;
+  --color-night-700: #352c26;
+  --color-night-600: #4a3f36;
+  --color-cream-100: #f1e7d3;
+  --color-cream-300: #d2c4ac;
+  --color-cream-500: #ad9f8a;
+  --color-green-700: #2f6b3a;
+  --color-green-300: #8ccb98;
+  --color-red-700: #a3262a;
+  --color-red-300: #f49a8e;
+  --color-shadow-light: rgb(46 36 29 / 0.08);
+  --color-shadow-light-strong: rgb(46 36 29 / 0.14);
+  --color-shadow-dark: rgb(0 0 0 / 0.35);
+  --color-shadow-dark-strong: rgb(0 0 0 / 0.5);
+  --color-backdrop-light: rgb(46 36 29 / 0.45);
+  --color-backdrop-dark: rgb(0 0 0 / 0.65);
+
+  /* Spacing */
+  --space-0: 0;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+
+  /* Sizes */
+  --size-hairline: 1px;
+  --size-focus-outline: 2px;
+  --size-focus-offset: 3px;
+  --size-underline-thin: 1px;
+  --size-underline-thick: 2px;
+  --size-underline-offset: 0.2em;
+  --size-touch-target: 2.75rem;
+  --size-icon: 1.25rem;
+  --size-icon-stroke: 1.5;
+  --size-line-clamp: 4;
+  --size-28rem: 28rem;
+  --size-32rem: 32rem;
+  --size-38rem: 38rem;
+  --size-42rem: 42rem;
+  --size-72rem: 72rem;
+  --size-torn-lg: 10px;
+  --size-torn-sm: 5px;
+
+  /* Radii */
+  --radius-none: 0;
+  --radius-sm: 2px;
+  --radius-full: 999px;
+
+  /* Shadow geometry */
+  --shadow-offset-sm: 0 1px 2px;
+  --shadow-offset-md: 0 4px 12px;
+  --shadow-offset-lg: 0 12px 32px;
+  --shadow-drop-lg: 0 8px 16px;
+
+  /* Torn paper edges: irregular top and bottom, straight sides */
+  --shape-torn-edges-lg: polygon(0% 3.2px, 4.17% 1.5px, 8.33% 6.5px, 12.5% 0.7px, 16.67% 5.4px, 20.83% 3.7px, 25% 0.6px, 29.17% 5.1px, 33.33% 0.4px, 37.5% 4.3px, 41.67% 0.7px, 45.83% 0.9px, 50% 4.2px, 54.17% 8.3px, 58.33% 1.2px, 62.5% 2.2px, 66.67% 6.3px, 70.83% 9.5px, 75% 5.8px, 79.17% 4px, 83.33% 9.8px, 87.5% 0.5px, 91.67% 8.6px, 95.83% 2.9px, 100% 1.4px, 100% calc(100% - 1.2px), 95.83% calc(100% - 3.1px), 91.67% calc(100% - 8.2px), 87.5% calc(100% - 1.8px), 83.33% calc(100% - 5.8px), 79.17% calc(100% - 6.4px), 75% calc(100% - 3.7px), 70.83% calc(100% - 5.5px), 66.67% calc(100% - 0.6px), 62.5% calc(100% - 0.6px), 58.33% calc(100% - 2.1px), 54.17% calc(100% - 6.8px), 50% calc(100% - 4.3px), 45.83% calc(100% - 3.1px), 41.67% calc(100% - 5.9px), 37.5% calc(100% - 4.5px), 33.33% calc(100% - 3px), 29.17% calc(100% - 7.9px), 25% calc(100% - 7px), 20.83% calc(100% - 2.4px), 16.67% calc(100% - 5.7px), 12.5% calc(100% - 5.3px), 8.33% calc(100% - 8.8px), 4.17% calc(100% - 7.3px), 0% calc(100% - 2.9px));
+  --shape-torn-edges-sm: polygon(0% 4.9px, 4.17% 0.6px, 8.33% 2.1px, 12.5% 3.8px, 16.67% 0.8px, 20.83% 2.4px, 25% 0.2px, 29.17% 3.3px, 33.33% 3.8px, 37.5% 2.9px, 41.67% 4.4px, 45.83% 1.6px, 50% 3.5px, 54.17% 3px, 58.33% 2.9px, 62.5% 2.3px, 66.67% 4.2px, 70.83% 4.7px, 75% 2.4px, 79.17% 3.3px, 83.33% 0.3px, 87.5% 3.5px, 91.67% 3.2px, 95.83% 5px, 100% 4.1px, 100% calc(100% - 1.4px), 95.83% calc(100% - 1.9px), 91.67% calc(100% - 3.3px), 87.5% calc(100% - 0.1px), 83.33% calc(100% - 2.3px), 79.17% calc(100% - 0.8px), 75% calc(100% - 0.6px), 70.83% calc(100% - 0.3px), 66.67% calc(100% - 3.8px), 62.5% calc(100% - 0.6px), 58.33% calc(100% - 1.2px), 54.17% calc(100% - 2px), 50% calc(100% - 4.4px), 45.83% calc(100% - 0.4px), 41.67% calc(100% - 2.2px), 37.5% calc(100% - 2.7px), 33.33% calc(100% - 4.4px), 29.17% calc(100% - 4.1px), 25% calc(100% - 4.3px), 20.83% calc(100% - 1.4px), 16.67% calc(100% - 2.1px), 12.5% calc(100% - 1.8px), 8.33% calc(100% - 4.4px), 4.17% calc(100% - 4.8px), 0% calc(100% - 0.8px));
+  --shape-none: none;
+
+  /* Motion */
+  --duration-0: 0ms;
+  --duration-100: 120ms;
+  --duration-200: 200ms;
+  --ease-out: cubic-bezier(0.2, 0, 0, 1);
+}
+
+/*
+ * Breakpoints (custom properties cannot be used in media queries; documented here as the single reference):
+ *   --bp-sm: 30rem  (home links in a row)
+ *   --bp-md: 40rem  (2 columns)
+ *   --bp-dialog: 48rem (torn dialog, larger gutters)
+ *   --bp-lg: 60rem  (3 columns)
+ *   --bp-xl: 72rem  (4 columns)
+ */

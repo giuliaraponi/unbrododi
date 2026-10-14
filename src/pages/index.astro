@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PaperSheet from '../components/PaperSheet.astro';
+import { site } from '../site.config';
+
+const { home } = site.pages;
+---
+
+<BaseLayout title={home.title} description={home.description}>
+  <main class="home">
+    <PaperSheet>
+      <h1 class="site-title">{site.name}</h1>
+    </PaperSheet>
+    <nav aria-label="Principale">
+      <ul class="links">
+        <li><a href="/poesie/">{site.pages.poems.title}</a></li>
+        <li><a href="/about/">{site.pages.about.title}</a></li>
+      </ul>
+    </nav>
+  </main>
+</BaseLayout>
+
+<style>
+  .home {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-stack-lg);
+    padding: var(--space-section) var(--space-inline-gutter);
+  }
+
+  .site-title {
+    font-size: var(--text-size-site-title);
+    font-style: italic;
+    font-weight: var(--font-weight-site-title);
+  }
+
+  .links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-stack);
+    padding: var(--space-none);
+    list-style: none;
+    font-family: var(--font-ui);
+    font-size: var(--text-size-ui);
+    font-weight: var(--font-weight-ui);
+  }
+
+  @media (min-width: 30rem) {
+    .links {
+      flex-direction: row;
+      gap: var(--space-links-gap);
+    }
+  }
+</style>

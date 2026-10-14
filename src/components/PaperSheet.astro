@@ -1,0 +1,28 @@
+---
+// A sheet of paper torn along its top and bottom edges.
+---
+
+<div class="paper">
+  <div class="sheet">
+    <slot />
+  </div>
+</div>
+
+<style>
+  /* The shadow sits on the wrapper because clip-path would cut it off the sheet. */
+  .paper {
+    width: 100%;
+    max-width: var(--paper-max);
+    filter: var(--shadow-paper);
+  }
+
+  .sheet {
+    display: grid;
+    place-items: center;
+    padding: calc(var(--space-paper-block) + var(--paper-edge-home-clearance)) var(--space-paper-inline);
+    border-radius: var(--radius-paper);
+    background: var(--surface);
+    clip-path: var(--paper-edge-home);
+    text-align: center;
+  }
+</style>

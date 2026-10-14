@@ -1,0 +1,155 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { site } from '../site.config';
+
+interface Props {
+  id: string;
+  title: string;
+  images?: readonly { src: ImageMetadata; alt: string; caption?: string | undefined }[] | undefined;
+}
+
+const { id, title, images = [] } = Astro.props;
+const titleId = `${id}-title`;
+---
+
+<dialog id={id} class="poem-dialog" aria-labelledby={titleId}>
+  <div class="sheet">
+    <form method="dialog" class="close-bar">
+      <button class="close" aria-label={`${site.ui.close}: ${title}`}>
+        <span aria-hidden="true">{site.ui.close}</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" /></svg>
+      </button>
+    </form>
+    <h2 id={titleId} class="title">{title}</h2>
+    <div class="poem">
+      <slot />
+    </div>
+    {
+      images.map((image) => (
+        <figure class="figure">
+          <div class="frame">
+            <Image src={image.src} alt={image.alt} widths={[320, 640, 960]} sizes="(min-width: 48rem) 38rem, 100vw" />
+          </div>
+          {image.caption && <figcaption class="caption">{image.caption}</figcaption>}
+        </figure>
+      ))
+    }
+  </div>
+</dialog>
+
+<style>
+  .poem-dialog {
+    width: min(100% - 2 * var(--space-dialog-margin), var(--dialog-max));
+    max-width: none;
+    max-height: calc(100dvh - 2 * var(--space-dialog-margin));
+    margin: auto;
+    padding: var(--space-none);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    border: none;
+    background: none;
+    color: var(--text-primary);
+    filter: var(--shadow-paper);
+    opacity: 1;
+    transition: opacity var(--motion-dialog-duration) var(--motion-easing);
+  }
+
+  @starting-style {
+    .poem-dialog[open] {
+      opacity: 0;
+    }
+  }
+
+  .poem-dialog::backdrop {
+    background: var(--backdrop);
+  }
+
+  .sheet {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-stack-lg);
+    padding: var(--space-dialog-padding);
+    border: var(--dialog-border-width) solid var(--border-strong);
+    border-radius: var(--radius-card);
+    background: var(--surface);
+    clip-path: var(--paper-edge-dialog);
+  }
+
+  .close-bar {
+    position: sticky;
+    top: var(--space-none);
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .close {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-stack-sm);
+    min-width: var(--touch-target);
+    min-height: var(--touch-target);
+    padding-inline: var(--space-stack-sm);
+    border: none;
+    border-radius: var(--radius-control);
+    background: var(--surface);
+    color: var(--action-primary);
+    font-family: var(--font-ui);
+    font-size: var(--text-size-ui);
+    font-weight: var(--font-weight-ui);
+    cursor: pointer;
+    transition: color var(--motion-hover-duration) var(--motion-easing);
+  }
+
+  .close:hover {
+    color: var(--action-primary-hover);
+  }
+
+  .close svg {
+    width: var(--icon-size);
+    height: var(--icon-size);
+    fill: none;
+    stroke: currentColor;
+    stroke-width: var(--icon-stroke);
+    stroke-linecap: round;
+  }
+
+  .title {
+    font-size: var(--text-size-dialog-title);
+  }
+
+  .poem {
+    max-width: var(--reading-max);
+    font-family: var(--font-poem);
+    font-size: var(--text-size-poem);
+    line-height: var(--line-height-poem);
+  }
+
+  /* One Markdown line = one verse; blank line = new stanza. */
+  .poem :global(p) {
+    white-space: pre-line;
+  }
+
+  .poem :global(p + p) {
+    margin-block-start: var(--space-stanza);
+  }
+
+  .figure {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-stack-sm);
+  }
+
+  .frame {
+    padding: var(--space-stack);
+    border-radius: var(--radius-card);
+    background: var(--surface-image);
+  }
+
+  .caption {
+    color: var(--text-secondary);
+    font-family: var(--font-ui);
+    font-size: var(--text-size-meta);
+    letter-spacing: var(--letter-spacing-meta);
+  }
+</style>

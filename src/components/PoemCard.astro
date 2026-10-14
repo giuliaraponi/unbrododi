@@ -1,0 +1,97 @@
+---
+import { site } from '../site.config';
+
+interface Props {
+  title: string;
+  intro: string;
+  tags: readonly string[];
+  dialogId: string;
+}
+
+const { title, intro, tags, dialogId } = Astro.props;
+---
+
+<article class="poem-card">
+  <h2 class="title">
+    <button type="button" class="open" aria-haspopup="dialog" aria-controls={dialogId} data-dialog={dialogId}>
+      {title}
+    </button>
+  </h2>
+  <p class="intro">{intro}</p>
+  <p class="tags">
+    <span class="visually-hidden">Tag: </span>{tags.join(site.ui.tagSeparator)}
+  </p>
+</article>
+
+<style>
+  .poem-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-stack);
+    flex: 1;
+    padding: var(--space-card-padding);
+    border: var(--border-width) solid var(--border-strong);
+    border-radius: var(--radius-card);
+    background: var(--surface);
+    box-shadow: var(--shadow-card);
+    transition:
+      background-color var(--motion-hover-duration) var(--motion-easing),
+      box-shadow var(--motion-hover-duration) var(--motion-easing);
+  }
+
+  .poem-card:hover,
+  .poem-card:has(.open:focus-visible) {
+    background: var(--surface-muted);
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  .poem-card:has(.open:focus-visible) {
+    outline: var(--focus-outline-width) solid var(--focus-ring);
+    outline-offset: var(--focus-outline-offset);
+  }
+
+  .title {
+    font-size: var(--text-size-card-title);
+  }
+
+  .open {
+    padding: var(--space-none);
+    border: none;
+    background: none;
+    font-family: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    text-align: start;
+    cursor: pointer;
+  }
+
+  /* Stretch the button's hit area over the whole card. */
+  .open::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+
+  .open:focus-visible {
+    outline: none;
+  }
+
+  .intro {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: var(--card-intro-lines);
+    line-clamp: var(--card-intro-lines);
+    overflow: hidden;
+    color: var(--text-secondary);
+    font-family: var(--font-poem);
+  }
+
+  .tags {
+    margin-top: auto;
+    color: var(--text-muted);
+    font-family: var(--font-ui);
+    font-size: var(--text-size-meta);
+    letter-spacing: var(--letter-spacing-meta);
+  }
+</style>

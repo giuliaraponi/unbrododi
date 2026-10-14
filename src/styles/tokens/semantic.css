@@ -1,0 +1,100 @@
+/* Semantic tokens: reference primitives only. Components use these. */
+:root {
+  /* Typography */
+  --font-heading: var(--font-family-serif);
+  --font-poem: var(--font-family-serif);
+  --font-ui: var(--font-family-sans);
+
+  --font-weight-body: var(--font-weight-400);
+  --font-weight-heading: var(--font-weight-500);
+  --font-weight-site-title: var(--font-weight-400);
+  --font-weight-ui: var(--font-weight-500);
+
+  --text-size-site-title: var(--font-size-800);
+  --text-size-page-title: var(--font-size-700);
+  --text-size-dialog-title: var(--font-size-600);
+  --text-size-card-title: var(--font-size-500);
+  --text-size-poem: var(--font-size-400);
+  --text-size-body: var(--font-size-300);
+  --text-size-ui: var(--font-size-200);
+  --text-size-meta: var(--font-size-100);
+
+  --line-height-heading: var(--line-height-tight);
+  --line-height-ui: var(--line-height-snug);
+  --line-height-body: var(--line-height-normal);
+  --line-height-poem: var(--line-height-verse);
+
+  --letter-spacing-body: var(--letter-spacing-normal);
+  --letter-spacing-meta: var(--letter-spacing-wide);
+
+  /* Spacing */
+  --space-none: var(--space-0);
+  --space-inline-gutter: var(--space-4);
+  --space-card-padding: var(--space-5);
+  --space-dialog-padding: var(--space-5);
+  --space-dialog-margin: var(--space-2);
+  --space-section: var(--space-8);
+  --space-grid-gap: var(--space-5);
+  --space-stanza: var(--space-5);
+  --space-stack: var(--space-4);
+  --space-stack-sm: var(--space-2);
+  --space-stack-lg: var(--space-6);
+  --space-tag-gap: var(--space-2);
+  --space-paper-block: var(--space-9);
+  --space-paper-inline: var(--space-5);
+  --space-links-gap: var(--space-5);
+  --space-chrome: var(--space-2);
+
+  /* Sizes */
+  --border-width: var(--size-hairline);
+  --focus-outline-width: var(--size-focus-outline);
+  --focus-outline-offset: var(--size-focus-offset);
+  --underline-thickness: var(--size-underline-thin);
+  --underline-thickness-hover: var(--size-underline-thick);
+  --underline-offset: var(--size-underline-offset);
+  --touch-target: var(--size-touch-target);
+  --icon-size: var(--size-icon);
+  --icon-stroke: var(--size-icon-stroke);
+  --dialog-border-width: var(--size-hairline);
+  --card-intro-lines: var(--size-line-clamp);
+  --card-min-width: var(--size-28rem);
+
+  /* Layout */
+  --container-max: var(--size-72rem);
+  --reading-max: var(--size-38rem);
+  --paper-max: var(--size-32rem);
+  --dialog-max: var(--size-42rem);
+
+  /* Radii */
+  --radius-card: var(--radius-sm);
+  --radius-control: var(--radius-sm);
+  --radius-paper: var(--radius-none);
+
+  /* Paper shape */
+  --paper-edge-home: var(--shape-torn-edges-lg);
+  --paper-edge-dialog: var(--shape-none);
+  --paper-edge-home-clearance: var(--size-torn-lg);
+
+  /* Motion */
+  --motion-hover-duration: var(--duration-100);
+  --motion-dialog-duration: var(--duration-200);
+  --motion-easing: var(--ease-out);
+}
+
+@media (min-width: 48rem) {
+  :root {
+    --space-inline-gutter: var(--space-6);
+    --space-dialog-padding: var(--space-7);
+    --space-section: var(--space-9);
+    --space-grid-gap: var(--space-6);
+    --paper-edge-dialog: var(--shape-torn-edges-sm);
+    --dialog-border-width: var(--space-0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-hover-duration: var(--duration-0);
+    --motion-dialog-duration: var(--duration-0);
+  }
+}
