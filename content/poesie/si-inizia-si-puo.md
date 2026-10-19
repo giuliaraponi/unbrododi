@@ -1,7 +1,7 @@
 ---
 # Si può? 
 title: Si può? 
-slug: sipuò
+slug: sipuo
 intro: Curioso il mio desiderio
 tags:
   - crescita
