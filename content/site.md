@@ -8,7 +8,7 @@
 - Nome del sito: un brodo di...
 - Lingua: italiano (`it`)
 - Autore: TODO — nome autore (segnaposto, non mostrato in pagina)
-- Dominio di produzione: TODO — es. `https://example.netlify.app` (segnaposto)
+- Dominio di produzione: `https://unbrododi.it` (principale su Netlify; `https://www.unbrododi.it` reindirizza qui)
 
 ## SEO
 
