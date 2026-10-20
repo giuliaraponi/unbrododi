@@ -13,7 +13,8 @@
 - Poems are the primary content.
 - Each poem has: title, slug, short introduction, tags, full Markdown content, and optional supporting images.
 - Do not invent poems, authors, dates, tags, or images.
-- Do not create individual pages for each poem; poems open in an accessible dialog.
+- Each poem has its own shareable page at `/poesie/<slug>/` (for links and SEO), showing the poem grid with that poem open in the dialog.
+- On the grid, poems open in an accessible dialog without a full page load, and the URL updates to the poem's page.
 - The About page uses placeholder content until I replace it.
 
 ## Design rules

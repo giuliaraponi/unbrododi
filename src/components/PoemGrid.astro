@@ -1,52 +1,46 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { getCollection } from 'astro:content';
 import PageLayout from '../layouts/PageLayout.astro';
-import PoemCard from '../components/PoemCard.astro';
-import PoemDialog from '../components/PoemDialog.astro';
+import PoemCard from './PoemCard.astro';
+import PoemDialog from './PoemDialog.astro';
 import { site } from '../site.config';
+import type { ComponentProps } from 'astro/types';
 
+interface Props {
+  title: string;
+  description: string;
+  // The poem whose dialog this page opens; its full text is the only one in the page.
+  poem?: ComponentProps<typeof PoemDialog>['poem'];
+}
+
+const { title, description, poem } = Astro.props;
 const poems = (await getCollection('poesie')).sort((a, b) => a.data.title.localeCompare(b.data.title, site.lang));
-const rendered = await Promise.all(poems.map(async (poem) => ({ poem, ...(await render(poem)) })));
-const { title, description } = site.pages.poems;
+const listTitle = `${site.pages.poems.title} · ${site.name}`;
 ---
 
-<PageLayout title={`${title} · ${site.name}`} heading={title} description={description}>
-  <ul class="grid">
+<PageLayout title={title} heading={site.pages.poems.title} description={description}>
+  <PoemDialog poem={poem}><slot /></PoemDialog>
+  <ul class="grid" data-list-title={listTitle}>
     {
-      rendered.map(({ poem, Content }) => {
-        const dialogId = `dialog-${poem.data.slug}`;
-        return (
-          <li id={poem.data.slug}>
-            <PoemCard
-              title={poem.data.title}
-              intro={poem.data.intro}
-              tags={poem.data.tags}
-              slug={poem.data.slug}
-              dialogId={dialogId}
-            />
-            <PoemDialog id={dialogId} title={poem.data.title} images={poem.data.images}>
-              <Content />
-            </PoemDialog>
-          </li>
-        );
-      })
+      poems.map((entry) => (
+        <li>
+          <PoemCard title={entry.data.title} intro={entry.data.intro} tags={entry.data.tags} slug={entry.data.slug} />
+        </li>
+      ))
     }
   </ul>
   <noscript>
     <style is:inline>
-      /* Without JavaScript, show each poem below its card. */
-      dialog.poem-dialog:not([open]) {
+      /* Without JavaScript, show the page's poem above the grid. */
+      dialog.poem-dialog[data-slug]:not([open]) {
         position: static;
         display: block;
         width: auto;
         max-height: none;
-        margin-block-start: var(--space-stack);
+        margin-block-end: var(--space-stack-lg);
       }
       .poem-dialog .close-bar {
         display: none;
-      }
-      .grid {
-        grid-auto-rows: auto !important;
       }
     </style>
   </noscript>

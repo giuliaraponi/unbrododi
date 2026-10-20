@@ -1,0 +1,8 @@
+---
+import PoemGrid from '../../components/PoemGrid.astro';
+import { site } from '../../site.config';
+
+const { title, description } = site.pages.poems;
+---
+
+<PoemGrid title={`${title} · ${site.name}`} description={description} />

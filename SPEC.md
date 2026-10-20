@@ -42,7 +42,9 @@ Sito statico in italiano che raccoglie poesie personali. Una homepage introdutti
 | FR-15 | Il build genera `sitemap-index.xml` (via `@astrojs/sitemap`) e `robots.txt` che la referenzia. |
 | FR-16 | Le poesie sono una Content Collection validata con schema Zod; un frontmatter non valido fa fallire il build. |
 | FR-17 | Le poesie sono ordinate per titolo (ordinamento `localeCompare` it). |
-| FR-18 | Senza JavaScript, il testo completo di ogni poesia resta leggibile (dialog mostrato inline sotto la propria card tramite `<noscript>` style). |
+| FR-18 | Senza JavaScript, le card sono link alle pagine delle poesie, e su `/poesie/<slug>/` il testo completo è mostrato sopra la griglia (tramite `<noscript>` style). |
+| FR-19 | Ogni poesia ha una pagina statica `/poesie/<slug>/` con la griglia e il dialog della poesia aperto al caricamento; contiene solo il testo completo di quella poesia, e ha `<title>` «<titolo> · un brodo di...», meta description = intro, canonical e Open Graph propri. |
+| FR-20 | Aprendo una card su `/poesie` l'URL diventa `/poesie/<slug>/` (History API, senza ricaricare; il testo è caricato dalla pagina della poesia); chiudendo il dialog l'URL torna a `/poesie/`; Indietro/Avanti aprono e chiudono il dialog. |
 
 ## 5. Requisiti non funzionali
 
@@ -55,7 +57,6 @@ Sito statico in italiano che raccoglie poesie personali. Una homepage introdutti
 ## 6. Fuori scope
 
 - Ricerca, filtri, categorie, commenti, newsletter, account utente.
-- Pagine separate per singola poesia; routing per poesia; deep link al dialog.
 - Pagina 404 personalizzata (si usa quella di Netlify).
 - Footer.
 - Note di supporto nelle poesie (campo `notes`).
@@ -82,7 +83,8 @@ Sito statico in italiano che raccoglie poesie personali. Una homepage introdutti
 | Route | File | Contenuto |
 |---|---|---|
 | `/` | `src/pages/index.astro` | foglio strappato + titolo sito + 2 link + pulsante tema |
-| `/poesie` | `src/pages/poesie.astro` | link home + h1 + griglia card + un `<dialog>` per poesia + pulsante tema |
+| `/poesie` | `src/pages/poesie/index.astro` | link home + h1 + griglia card + un `<dialog>` vuoto + pulsante tema |
+| `/poesie/<slug>/` | `src/pages/poesie/[slug].astro` | come `/poesie`, con il `<dialog>` della poesia aperto |
 | `/about` | `src/pages/about.astro` | link home + h1 + testo about + pulsante tema |
 
 Struttura prevista (indicativa):
@@ -94,6 +96,7 @@ src/
   components/
     PaperSheet.astro
     PoemCard.astro
+    PoemGrid.astro
     PoemDialog.astro
     ThemeToggle.astro
     HomeLink.astro
@@ -105,7 +108,7 @@ src/
     tokens/primitives.css
     tokens/semantic.css
     tokens/themes.css
-  pages/index.astro, poesie.astro, about.astro
+  pages/index.astro, poesie/index.astro, poesie/[slug].astro, about.astro
 content/                          # fonte dei contenuti (già approvata)
   poesie/images/                  # immagini delle poesie
 public/robots.txt
@@ -125,7 +128,7 @@ Loader: `glob({ pattern: "**/*.md", base: "./content/poesie" })` — legge diret
 | Campo | Tipo | Obbligatorio | Note |
 |---|---|---|---|
 | `title` | string, non vuota | sì | titolo card e dialog |
-| `slug` | string, kebab-case | sì | unico; usato come id della entry e per gli id del dialog |
+| `slug` | string, kebab-case | sì | unico; usato come id della entry e per l'URL `/poesie/<slug>/` |
 | `intro` | string, non vuota | sì | testo della card |
 | `tags` | string[] (min 1) | sì | mostrati con « · » |
 | `images` | array di `{ src: image(), alt: string non vuota, caption?: string }` | no | percorsi relativi al file `.md`, risolti da `astro:assets` |
@@ -185,14 +188,14 @@ Definiti in `design/theme.md`. Vincoli di implementazione:
 | AC-12 | `/poesie` e `/about` hanno un link «un brodo di...» con `href="/"`; `/` non lo ha. | FR-12 |
 | AC-13 | Il pulsante tema è presente su tutte e 3 le pagine; cliccandolo il tema cambia e l'`aria-label` passa da «Passa al tema scuro» a «Passa al tema chiaro» (o viceversa); ricaricando o cambiando pagina la scelta persiste senza lampo del tema opposto; con `localStorage` svuotato vale la preferenza di sistema; con JS disattivato il pulsante non è visibile. | FR-13 |
 | AC-14 | Nell'HTML generato, ognuna delle 3 pagine ha `lang="it"`, `<title>` e meta description come in `content/site.md`, `<link rel="canonical">`, `og:title`, `og:description`, `og:url`, `og:type`, `og:locale`. | FR-14 |
-| AC-15 | `dist/` contiene `sitemap-index.xml` con le 3 URL e `robots.txt` con la riga `Sitemap:`. | FR-15 |
+| AC-15 | `dist/` contiene `sitemap-index.xml` con le 3 URL più una per poesia e `robots.txt` con la riga `Sitemap:`. | FR-15 |
 | AC-16 | Rimuovendo `title` (o mettendo `alt` vuoto in un'immagine) da una poesia, `pnpm build` fallisce con errore di validazione; ripristinandolo passa. | FR-16 |
 | AC-17 | Le card compaiono nell'ordine «Poesia segnaposto I», «Poesia segnaposto II». | FR-17 |
-| AC-18 | Con JS disattivato su `/poesie`, il testo completo di ogni poesia è visibile sotto la propria card. | FR-18 |
+| AC-18 | Con JS disattivato, le card portano a `/poesie/<slug>/`, dove il testo completo della poesia è visibile sopra la griglia. | FR-18 |
 | AC-19 | `grep` nei file `src/components/**` e `src/pages/**` non trova hex, `rgb(`, `hsl(`, nomi di font, valori `px`/`rem`/`ms` fuori dalle eccezioni di §12. | §12 |
 | AC-20 | Ogni elemento interattivo mostra un outline `--focus-ring` visibile con navigazione da tastiera; con `prefers-reduced-motion: reduce` nessuna transizione è percepibile. | NFR a11y |
 | AC-21 | axe DevTools: 0 violazioni serie/critiche su `/`, `/poesie` (anche col dialog aperto) e `/about`, in tema chiaro e scuro. | NFR a11y |
-| AC-22 | Nessuna pagina `/poesie/<slug>` o `/404` è generata in `dist/`; nessuna dipendenza React/Vue/Svelte/Preact in `package.json`. | Fuori scope, NFR |
+| AC-22 | Nessuna pagina `/404` è generata in `dist/`; `dist/` contiene una pagina `/poesie/<slug>/` per poesia; nessuna dipendenza React/Vue/Svelte/Preact in `package.json`. | Fuori scope, NFR |
 | AC-23 | `content/poesie/images/placeholder.png` è invariato (stesso hash prima e dopo) e la radice del progetto non contiene immagini. | §11 |
 
 ## 14. Comandi di verifica

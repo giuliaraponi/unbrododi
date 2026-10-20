@@ -6,15 +6,14 @@ interface Props {
   intro: string;
   tags: readonly string[];
   slug: string;
-  dialogId: string;
 }
 
-const { title, intro, tags, slug, dialogId } = Astro.props;
+const { title, intro, tags, slug } = Astro.props;
 ---
 
 <article class="poem-card">
   <h2 class="title">
-    <a href={`#${slug}`} class="open" aria-haspopup="dialog" aria-controls={dialogId} data-dialog={dialogId} data-slug={slug}>
+    <a href={`/poesie/${slug}/`} class="open" aria-haspopup="dialog" data-poem={slug}>
       {title}
     </a>
   </h2>
