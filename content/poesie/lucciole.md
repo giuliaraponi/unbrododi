@@ -8,9 +8,8 @@ tags:
   - essere
   - crescita
 images:
-  - src: ./images/profilo.png
-    alt: immagine png, senza sfondo, continuos line nero. Raffigura il volto di una donna di profilo. Stilizzato, stile disegno a mano. Gli occhi sono chiusi ma sono comunque rivolti verso l'alto. 
-    caption: sii luce. 
+  - src: ./images/balcone.png
+    alt: immagine png, senza sfondo, raffigura una terrazza con luci che si accendono quando fa buio.
 ---
 
 Ti accendi quando fuori si fa buio,
