@@ -16,8 +16,14 @@ const { title, description } = site.pages.poems;
       rendered.map(({ poem, Content }) => {
         const dialogId = `dialog-${poem.data.slug}`;
         return (
-          <li>
-            <PoemCard title={poem.data.title} intro={poem.data.intro} tags={poem.data.tags} dialogId={dialogId} />
+          <li id={poem.data.slug}>
+            <PoemCard
+              title={poem.data.title}
+              intro={poem.data.intro}
+              tags={poem.data.tags}
+              slug={poem.data.slug}
+              dialogId={dialogId}
+            />
             <PoemDialog id={dialogId} title={poem.data.title} images={poem.data.images}>
               <Content />
             </PoemDialog>
@@ -38,9 +44,6 @@ const { title, description } = site.pages.poems;
       }
       .poem-dialog .close-bar {
         display: none;
-      }
-      .poem-card .open {
-        cursor: default;
       }
       .grid {
         grid-auto-rows: auto !important;

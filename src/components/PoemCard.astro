@@ -5,17 +5,18 @@ interface Props {
   title: string;
   intro: string;
   tags: readonly string[];
+  slug: string;
   dialogId: string;
 }
 
-const { title, intro, tags, dialogId } = Astro.props;
+const { title, intro, tags, slug, dialogId } = Astro.props;
 ---
 
 <article class="poem-card">
   <h2 class="title">
-    <button type="button" class="open" aria-haspopup="dialog" aria-controls={dialogId} data-dialog={dialogId}>
+    <a href={`#${slug}`} class="open" aria-haspopup="dialog" aria-controls={dialogId} data-dialog={dialogId} data-slug={slug}>
       {title}
-    </button>
+    </a>
   </h2>
   <p class="intro">{intro}</p>
   <p class="tags">
@@ -56,14 +57,8 @@ const { title, intro, tags, dialogId } = Astro.props;
   }
 
   .open {
-    padding: var(--space-none);
-    border: none;
-    background: none;
-    font-family: inherit;
-    font-weight: inherit;
-    line-height: inherit;
-    text-align: start;
-    cursor: pointer;
+    color: inherit;
+    text-decoration: none;
   }
 
   /* Stretch the button's hit area over the whole card. */
