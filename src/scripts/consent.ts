@@ -72,6 +72,12 @@ function applyChoice(choice: Choice): void {
   }
 }
 
+// The banner is fixed to the viewport bottom, so reserve its height at the end
+// of the page; otherwise it covers the content there, including the manage button.
+function reserveBannerSpace(banner: HTMLElement): void {
+  document.body.style.paddingBlockEnd = banner.hidden ? '' : `${banner.offsetHeight}px`;
+}
+
 export function initConsent(): void {
   const banner = document.querySelector<HTMLElement>('[data-cookie-banner]');
   if (!banner) return;
@@ -79,6 +85,8 @@ export function initConsent(): void {
   const accept = banner.querySelector<HTMLButtonElement>('[data-cookie-accept]');
   const reject = banner.querySelector<HTMLButtonElement>('[data-cookie-reject]');
   const manage = document.querySelector<HTMLButtonElement>('[data-cookie-manage]');
+
+  new ResizeObserver(() => reserveBannerSpace(banner)).observe(banner);
 
   const saved = readChoice();
   if (saved) {
