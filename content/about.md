@@ -3,8 +3,17 @@ title: Come nasce questo progetto
 placeholder: true # TODO: sostituire con il testo reale
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus. Vestibulum id ligula porta felis euismod semper. Cras mattis consectetur purus sit amet fermentum.
+Tante volte nella vita, una parola detta al momento giusto, alla persona giusta, nel modo giusto, è in grado di generare un processo virtuoso inaspettato.
+Avete presente quando vediamo su un autobus stra-pieno, qualcuno che ci cede il posto perché ci vede stanchi?
+Avete mai sperimentato quanto può funzionare un "buongiorno" detto con enfasi, appena si entra in un ufficio grigio?
 
-Sed posuere consectetur est at lobortis. Donec ullamcorper nulla non metus auctor fringilla. Maecenas faucibus mollis interdum. Nullam quis risus eget urna mollis ornare vel eu leo.
+Ecco, io credo nel potere delle parole, in grado di cambiare il modo in cui vediamo la nostra quotidianità.
+Le parole creano, così come si costruiscono case, libri, auto, viaggi e fogli di giornale :)
 
-Aenean lacinia bibendum nulla sed consectetur. Curabitur blandit tempus porttitor. Etiam porta sem malesuada magna mollis euismod. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+Un brodo di è un progetto che vuole provare a dare un po' di luce a qualcosa che si tende a trascurare.. per abitudine.
+Un brodo di ci ricorda che siamo un mix di tante cose eterogenee e sta a noi stupirci vedendoli belli messi insieme. 
+
+Ogni giorno pubblicherò qualche pensiero, spero vi arrivi e vi faccia stare bene.
+
+Un abbraccio
+La vostra Brodo di Giuggola 
