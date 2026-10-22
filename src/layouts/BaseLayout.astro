@@ -1,6 +1,7 @@
 ---
 import '../styles/base.css';
 import ThemeToggle from '../components/ThemeToggle.astro';
+import CookieBanner from '../components/CookieBanner.astro';
 import { site } from '../site.config';
 
 interface Props {
@@ -41,6 +42,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   <body>
     <ThemeToggle />
     <slot />
+    <CookieBanner />
   </body>
 </html>
 

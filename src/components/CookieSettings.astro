@@ -1,0 +1,35 @@
+---
+import { site } from '../site.config';
+---
+
+<div class="cookie-settings">
+  <button type="button" class="cookie-settings-button" data-cookie-manage>
+    {site.ui.cookies.manage}
+  </button>
+</div>
+
+<style>
+  .cookie-settings {
+    display: flex;
+    justify-content: center;
+    margin-block-start: var(--space-section);
+  }
+
+  .cookie-settings-button {
+    min-height: var(--touch-target);
+    padding-inline: var(--space-stack);
+    border: var(--border-width) solid var(--border-strong);
+    border-radius: var(--radius-control);
+    background: transparent;
+    color: var(--text-primary);
+    font-family: var(--font-ui);
+    font-size: var(--text-size-ui);
+    font-weight: var(--font-weight-ui);
+    cursor: pointer;
+    transition: background-color var(--motion-hover-duration) var(--motion-easing);
+  }
+
+  .cookie-settings-button:hover {
+    background: var(--surface-muted);
+  }
+</style>

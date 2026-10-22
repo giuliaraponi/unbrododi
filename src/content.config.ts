@@ -23,7 +23,7 @@ const poesie = defineCollection({
 });
 
 const pagine = defineCollection({
-  loader: glob({ pattern: 'about.md', base: './content' }),
+  loader: glob({ pattern: ['about.md', 'privacy.md'], base: './content' }),
   schema: z.object({
     title: z.string().min(1),
     placeholder: z.boolean().optional(),
