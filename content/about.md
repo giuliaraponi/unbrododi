@@ -14,7 +14,7 @@ Le parole creano, al pari di chi costruisce _case, libri, auto, viaggi e fogli d
 
 "**Un brodo di**" ci ricorda che siamo un mix di tante cose eterogenee e sta a noi stupirci vedendoli belli messi insieme. 
 
-Ogni giorno pubblicherò qualche pensiero, spero vi arrivi e vi faccia stare bene.
+Ogni giorno pubblicherò qualche pensiero, tutto frutto della mia fantasia. Spero vi arrivi e vi faccia stare bene.
 
 Un abbraccio
 
