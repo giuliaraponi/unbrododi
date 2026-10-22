@@ -3,8 +3,7 @@ export const site = {
   name: 'un brodo di...',
   lang: 'it',
   locale: 'it_IT',
-  // TODO: replace with the production domain.
-  url: 'https://example.netlify.app',
+  url: 'https://unbrododi.it',
   // TODO: replace with the author's name (not shown on the page).
   author: 'TODO',
   pages: {
