@@ -17,6 +17,7 @@
 | `/` | un brodo di... | TODO — descrizione del sito (segnaposto) |
 | `/poesie` | I miei pensieri · un brodo di... | TODO — descrizione pagina poesie (segnaposto) |
 | `/about` | Come nasce questo progetto · un brodo di... | TODO — descrizione pagina about (segnaposto) |
+| `/privacy` | Cookie e privacy · un brodo di... | TODO — descrizione pagina cookie e privacy (segnaposto) |
 
 Immagine Open Graph: nessuna (non fornita).
 
@@ -47,3 +48,10 @@ Immagine Open Graph: nessuna (non fornita).
 - Pulsante chiudi dialog: «Chiudi»
 - Pulsante tema (aria-label): «Passa al tema scuro» / «Passa al tema chiaro»
 - Separatore tag: « · »
+- Banner cookie: testo, «Accetta», «Rifiuta», «Leggi l’informativa» e «Gestisci le preferenze cookie» sono in `src/site.config.ts` (`ui.cookies`)
+- ID Google Analytics 4: `src/site.config.ts` (`analytics.gaMeasurementId`), vuoto = Google Analytics non caricato
+
+## Cookie e privacy (`/privacy`)
+
+- Titolo (h1): «Cookie e privacy»
+- Contenuti: vedi `content/privacy.md` (segnaposto «DA COMPILARE» da completare prima della pubblicazione)

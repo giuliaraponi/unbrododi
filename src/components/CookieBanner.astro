@@ -1,0 +1,103 @@
+---
+import { site } from '../site.config';
+const { cookies } = site.ui;
+---
+
+<section class="cookie-banner" data-cookie-banner aria-label={cookies.bannerLabel} hidden>
+  <p class="cookie-banner-text">
+    {cookies.bannerText}
+    <a href="/privacy/">{cookies.policyLink}</a>
+  </p>
+  <div class="cookie-banner-actions">
+    <button type="button" class="cookie-button cookie-button-primary" data-cookie-accept>
+      {cookies.accept}
+    </button>
+    <button type="button" class="cookie-button cookie-button-secondary" data-cookie-reject>
+      {cookies.reject}
+    </button>
+  </div>
+</section>
+
+<script>
+  import { initConsent } from '../scripts/consent';
+  initConsent();
+</script>
+
+<style>
+  .cookie-banner {
+    position: fixed;
+    inset-inline: 0;
+    inset-block-end: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-stack);
+    padding: var(--space-stack) var(--space-inline-gutter);
+    background: var(--surface);
+    border-block-start: var(--border-width) solid var(--border-subtle);
+    box-shadow: var(--shadow-card);
+    font-family: var(--font-ui);
+    font-size: var(--text-size-ui);
+    line-height: var(--line-height-ui);
+    color: var(--text-secondary);
+  }
+
+  .cookie-banner[hidden] {
+    display: none;
+  }
+
+  .cookie-banner-text {
+    max-width: var(--reading-max);
+  }
+
+  .cookie-banner-text a {
+    color: var(--action-primary);
+  }
+
+  .cookie-banner-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-stack-sm);
+  }
+
+  .cookie-button {
+    min-height: var(--touch-target);
+    padding-inline: var(--space-stack);
+    border-radius: var(--radius-control);
+    font-family: var(--font-ui);
+    font-size: var(--text-size-ui);
+    font-weight: var(--font-weight-ui);
+    cursor: pointer;
+    transition:
+      background-color var(--motion-hover-duration) var(--motion-easing),
+      color var(--motion-hover-duration) var(--motion-easing);
+  }
+
+  .cookie-button-primary {
+    border: var(--border-width) solid var(--action-primary);
+    background: var(--action-primary);
+    color: var(--text-on-action);
+  }
+
+  .cookie-button-primary:hover {
+    background: var(--action-primary-hover);
+    border-color: var(--action-primary-hover);
+  }
+
+  .cookie-button-secondary {
+    border: var(--border-width) solid var(--border-strong);
+    background: transparent;
+    color: var(--text-primary);
+  }
+
+  .cookie-button-secondary:hover {
+    background: var(--surface-muted);
+  }
+
+  @media (min-width: 40rem) {
+    .cookie-banner {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+</style>

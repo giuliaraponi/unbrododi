@@ -22,6 +22,15 @@ export const site = {
       // TODO: replace with the real page description.
       description: 'TODO — descrizione pagina about.',
     },
+    privacy: {
+      title: 'Cookie e privacy',
+      // TODO: replace with the real page description.
+      description: 'TODO — descrizione pagina cookie e privacy.',
+    },
+  },
+  analytics: {
+    // Empty = Google Analytics is never loaded.
+    gaMeasurementId: 'G-W0WPQ199ER',
   },
   ui: {
     homeLink: 'un brodo di...',
@@ -29,5 +38,14 @@ export const site = {
     themeToDark: 'Passa al tema scuro',
     themeToLight: 'Passa al tema chiaro',
     tagSeparator: ' · ',
+    cookies: {
+      bannerLabel: 'Consenso cookie',
+      bannerText:
+        'Questo sito usa Google Analytics 4 per capire come viene visitato. Google Analytics si attiva solo se accetti: se rifiuti, non viene caricato.',
+      accept: 'Accetta',
+      reject: 'Rifiuta',
+      policyLink: 'Leggi l’informativa',
+      manage: 'Gestisci le preferenze cookie',
+    },
   },
 } as const;
