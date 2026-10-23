@@ -11,14 +11,16 @@ interface Props {
   description: string;
   // The poem whose dialog this page opens; its full text is the only one in the page.
   poem?: ComponentProps<typeof PoemDialog>['poem'];
+  // Link-preview image for that poem's page.
+  image?: ComponentProps<typeof PageLayout>['image'];
 }
 
-const { title, description, poem } = Astro.props;
+const { title, description, poem, image } = Astro.props;
 const poems = (await getCollection('poesie')).sort((a, b) => a.data.title.localeCompare(b.data.title, site.lang));
 const listTitle = `${site.pages.poems.title} · ${site.name}`;
 ---
 
-<PageLayout title={title} heading={site.pages.poems.title} description={description}>
+<PageLayout title={title} heading={site.pages.poems.title} description={description} image={image}>
   <PoemDialog poem={poem}><slot /></PoemDialog>
   <ul class="grid" data-list-title={listTitle}>
     {

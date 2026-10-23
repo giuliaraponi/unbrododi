@@ -7,19 +7,20 @@
 
 - Nome del sito: un brodo di...
 - Lingua: italiano (`it`)
-- Autore: TODO — nome autore (segnaposto, non mostrato in pagina)
+- Autore: Brodo di Giuggiola (non mostrato in pagina)
+- Instagram: https://www.instagram.com/unbrododi?vrfl=MTVveDZic2FnaGpjbg== (`src/site.config.ts`, `social.instagram`)
 - Dominio di produzione: `https://unbrododi.it` (principale su Netlify; `https://www.unbrododi.it` reindirizza qui)
 
 ## SEO
 
 | Pagina | `<title>` | Meta description |
 |---|---|---|
-| `/` | un brodo di... | TODO — descrizione del sito (segnaposto) |
+| `/` | un brodo di... | Testi, pensieri e parole che nascono come fiori in primavera - all made by BdG |
 | `/poesie` | I miei pensieri · un brodo di... | TODO — descrizione pagina poesie (segnaposto) |
 | `/about` | Come nasce questo progetto · un brodo di... | TODO — descrizione pagina about (segnaposto) |
 | `/privacy` | Cookie e privacy · un brodo di... | TODO — descrizione pagina cookie e privacy (segnaposto) |
 
-Immagine Open Graph: nessuna (non fornita).
+Immagine Open Graph: nessuna a livello di sito (non fornita). Ogni pagina poesia usa la prima immagine della poesia, se presente, ridotta a 1200 px in JPEG; le poesie senza immagini non hanno `og:image`.
 
 ## Homepage (`/`)
 
@@ -48,6 +49,7 @@ Immagine Open Graph: nessuna (non fornita).
 - Pulsante chiudi dialog: «Chiudi»
 - Pulsante tema (aria-label): «Passa al tema scuro» / «Passa al tema chiaro»
 - Separatore tag: « · »
+- Condivisione in fondo a ogni poesia: «Condividi», «Facebook», «WhatsApp», «(si apre in una nuova scheda)» sono in `src/site.config.ts` (`ui.share`)
 - Banner cookie: testo, «Accetta», «Rifiuta», «Leggi l’informativa» e «Gestisci le preferenze cookie» sono in `src/site.config.ts` (`ui.cookies`)
 - ID Google Analytics 4: `src/site.config.ts` (`analytics.gaMeasurementId`), vuoto = Google Analytics non caricato
 

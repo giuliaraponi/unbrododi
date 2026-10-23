@@ -1,17 +1,19 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import HomeLink from '../components/HomeLink.astro';
+import type { ComponentProps } from 'astro/types';
 
 interface Props {
   title: string;
   heading: string;
   description: string;
+  image?: ComponentProps<typeof BaseLayout>['image'];
 }
 
-const { title, heading, description } = Astro.props;
+const { title, heading, description, image } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} image={image}>
   <header class="header">
     <HomeLink />
   </header>

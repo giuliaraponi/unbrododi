@@ -4,13 +4,14 @@ export const site = {
   lang: 'it',
   locale: 'it_IT',
   url: 'https://unbrododi.it',
-  // TODO: replace with the author's name (not shown on the page).
-  author: 'TODO',
+  author: 'Brodo di Giuggiola',
+  social: {
+    instagram: 'https://www.instagram.com/unbrododi?vrfl=MTVveDZic2FnaGpjbg==',
+  },
   pages: {
     home: {
       title: 'un brodo di...',
-      // TODO: replace with the real site description.
-      description: 'TODO — descrizione del sito.',
+      description: 'Testi, pensieri e parole che nascono come fiori in primavera - all made by BdG',
     },
     poems: {
       title: 'I miei pensieri',
@@ -38,6 +39,13 @@ export const site = {
     themeToDark: 'Passa al tema scuro',
     themeToLight: 'Passa al tema chiaro',
     tagSeparator: ' · ',
+    share: {
+      label: 'Condividi',
+      facebook: 'Facebook',
+      whatsapp: 'WhatsApp',
+      instagram: 'Instagram',
+      newTab: '(si apre in una nuova scheda)',
+    },
     cookies: {
       bannerLabel: 'Consenso cookie',
       bannerText:

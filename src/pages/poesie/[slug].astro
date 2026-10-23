@@ -17,6 +17,7 @@ const { Content } = await render(poem);
   title={`${poem.data.title} · ${site.name}`}
   description={poem.data.intro}
   poem={{ slug: poem.data.slug, title: poem.data.title, images: poem.data.images }}
+  image={poem.data.images?.[0]}
 >
   <Content />
 </PoemGrid>

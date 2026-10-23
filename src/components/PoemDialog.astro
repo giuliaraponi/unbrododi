@@ -16,6 +16,22 @@ interface Props {
 
 const { poem } = Astro.props;
 const titleId = 'poem-dialog-title';
+// Absolute URL of the poem's own page, so shared links point to the poem, not the list.
+const shareUrl = poem ? new URL(`/poesie/${poem.slug}/`, Astro.site).href : '';
+const shareLinks = poem
+  ? [
+      {
+        label: site.ui.share.facebook,
+        href: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`,
+      },
+      {
+        label: site.ui.share.whatsapp,
+        href: `https://wa.me/?text=${encodeURIComponent(`${poem.title} ${shareUrl}`)}`,
+      },
+      // Instagram cannot receive a link from a web address, so this opens the profile instead.
+      { label: site.ui.share.instagram, href: site.social.instagram },
+    ]
+  : [];
 ---
 
 <dialog id="poem-dialog" class="poem-dialog" aria-labelledby={titleId} data-slug={poem?.slug}>
@@ -44,6 +60,19 @@ const titleId = 'poem-dialog-title';
             {image.caption && <figcaption class="caption">{image.caption}</figcaption>}
           </figure>
         ))}
+        <nav class="share" aria-label={site.ui.share.label}>
+          <span class="share-label" aria-hidden="true">{site.ui.share.label}</span>
+          <ul class="share-links">
+            {shareLinks.map((link) => (
+              <li>
+                <a href={link.href} target="_blank" rel="noopener noreferrer">
+                  {link.label}
+                  <span class="visually-hidden"> {site.ui.share.newTab}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
     )
   }
@@ -162,5 +191,41 @@ const titleId = 'poem-dialog-title';
     font-family: var(--font-ui);
     font-size: var(--text-size-meta);
     letter-spacing: var(--letter-spacing-meta);
+  }
+
+  .share {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-stack-sm) var(--space-stack);
+    padding-block-start: var(--space-stack);
+    border-block-start: var(--border-width) solid var(--border-subtle);
+    color: var(--text-muted);
+    font-family: var(--font-ui);
+    font-size: var(--text-size-meta);
+    letter-spacing: var(--letter-spacing-meta);
+  }
+
+  .share-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-stack-sm);
+    margin: var(--space-none);
+    padding: var(--space-none);
+    list-style: none;
+  }
+
+  .share-links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--touch-target);
+    padding-inline: var(--space-stack-sm);
+    color: var(--action-primary);
+    text-decoration-thickness: var(--underline-thickness);
+    text-underline-offset: var(--underline-offset);
+  }
+
+  .share-links a:hover {
+    color: var(--action-primary-hover);
   }
 </style>
