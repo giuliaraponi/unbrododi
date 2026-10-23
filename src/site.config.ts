@@ -25,7 +25,7 @@ export const site = {
     privacy: {
       title: 'Cookie e privacy',
       // TODO: replace with the real page description.
-      description: 'TODO — descrizione pagina cookie e privacy.',
+      description: 'Pagina cookie e privacy.',
     },
   },
   analytics: {
