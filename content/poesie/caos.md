@@ -26,7 +26,7 @@ mai costanti. E ti fermi a sentire, a sentirti.
 
 E forse te la senti di buttarti
 in mezzo a quelle onde, che un po' fanno paura
-ma ti ricordi che sei vivo
+ma ti ricordano che sei vivo
 e anche un po' bambino.
 
 E voli, dove tanti altri si fermano solo con lo sguardo.
